@@ -28,7 +28,7 @@ def home():
 
 # get metodumuz var, deneme endpointimiz get metodu ile çalışıyor, deneme endpointi çağrılırsa home fonksiyonu çalışır ve bir mesaj return eder.
 @app.get("/deneme")
-def home():
+def deneme():
     """
     deneme
     """
