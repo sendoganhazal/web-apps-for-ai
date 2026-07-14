@@ -1,1 +1,2 @@
-uvicorn 02_uvicorn:app --reload
+uvicorn <file_name_without_.py>:app --reload
+.\venv\Scripts\activate
