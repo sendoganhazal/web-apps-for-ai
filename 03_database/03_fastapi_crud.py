@@ -89,7 +89,7 @@ def mesaj_ekle_endpoint(veri:MesajModel):
         "durum": "basarili",
         "mesaj": "kayıt dbye başarıyla eklendi",
         "eklenen_veri": {
-            "kullanici_mesaji": veri.kullanici_mesajı,
+            "kullanici_mesaji": veri.kullanici_mesaji,
             "bot_cevabi": veri.bot_cevabi
         }
     }
