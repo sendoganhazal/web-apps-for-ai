@@ -49,7 +49,28 @@ logging.basicConfig(
 app = FastAPI()
 
 # 4. veritabanı altyapısı hazırlama
+def init_db():
+    connection = sqlite3.connect("analysis_results.db")
+    cursor = connection.cursor()
+    
+    cursor.execute(
+        """
+            CREATE TABLE IF NOT EXISTS analysis_history(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                file_name TEXT NOT NULL,
+                row_count INTEGER NOT NULL,
+                column_count INTEGER NOT NULL,
+                column_names TEXT NOT NULL,
+                numeric_column_count INTEGER NOT NULL,
+                missing_values INTEGER NOT NULL,
+                created_at TEXT NOT NULL
+            )
+        """ 
+    )
+    connection.commit()
+    connection.close()
 
+init_db()
 
 # 5. veri analizi yapan yardımcı fonksiyonların ve db işlemleri yapan fonksiyonların tanımlanması
 
