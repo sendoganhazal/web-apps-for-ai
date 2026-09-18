@@ -1,0 +1,5 @@
+DEBUG | 2026-09-18 12:44:02,222 | MESAJ: debug kaydi
+INFO | 2026-09-18 12:44:02,222 | MESAJ: info kaydi
+WARNING | 2026-09-18 12:44:02,222 | MESAJ: warning kaydi
+ERROR | 2026-09-18 12:44:02,222 | MESAJ: error kaydi
+CRITICAL | 2026-09-18 12:44:02,222 | MESAJ: critical kaydi
