@@ -1,0 +1,9 @@
+INFO | 2026-09-18 13:56:44,683 | username:as, number: 2
+ERROR | 2026-09-18 13:56:44,683 | Username: as. Kullanici adi  3 karakterden kisa olamaz
+INFO | 2026-09-18 13:56:51,999 | username:asli, number: 2
+INFO | 2026-09-18 13:56:51,999 | Islem basariyla tamamlandi. Username: asli, Number: 2, Result = Number * 2 = 4
+INFO | 2026-09-18 13:57:01,740 | username:hazal, number: -2
+ERROR | 2026-09-18 13:57:01,740 | Number: -2. Number negatif olamaz
+INFO | 2026-09-18 13:57:07,029 | username:hazal, number: 0
+WARNING | 2026-09-18 13:57:07,029 | Number: 0. Number sifir olamaz
+INFO | 2026-09-18 13:57:07,030 | Islem basariyla tamamlandi. Username: hazal, Number: 0, Result = Number * 2 = 0
