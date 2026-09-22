@@ -286,10 +286,32 @@ async def upload_csv(file:UploadFile = File(...)):
         )
 
 # 7. analiz geçmişi listeleyen endpoint yazılması
-
+@app.get("/analysis-history")
+async def list_analysis_history():
+    
+    logging.info("/analysis-history endpointi çağrıldı")
+    
+    history = get_all_analysis_history()
+    
+    logging.info(f"Toplam {len(history)} Kayıt Listelendi")
+    
+    return {
+        "analysis_history": history
+    }
 
 # 8. tekil analizi listeleyen endpoint yazılması
-
+@app.get("/analysis/{analysis_id}")
+async def get_analysis_detail(analysis_id:int):
+    
+    logging.info(f"/analysis/{analysis_id} endpointi çağrıldı")
+    
+    analysis_detail = get_analysis_by_id(analysis_id);
+    
+    logging.info(f"analysis_id = {analysis_id} detayı başarıyla getirildi")
+    
+    return {
+        "analysis_detail": analysis_detail
+    }
 
 # 9. request ile client testi yapmak
 # 10. tüm sistem testi
