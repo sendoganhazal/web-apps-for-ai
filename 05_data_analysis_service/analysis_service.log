@@ -1,0 +1,38 @@
+INFO | 2026-09-22 14:43:25,824 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:43:25,936 | CSV analiz edilirken bir hata olu�tu: object of type 'numpy.int64' has no len()
+INFO | 2026-09-22 14:46:00,696 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:46:00,702 | CSV analiz edilirken bir hata olu�tu: object of type 'numpy.int64' has no len()
+INFO | 2026-09-22 14:47:12,252 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:47:12,258 | CSV analiz edilirken bir hata olu�tu: object of type 'numpy.int64' has no len()
+INFO | 2026-09-22 14:47:54,289 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:47:54,294 | CSV analiz edilirken bir hata olu�tu: object of type 'numpy.int64' has no len()
+INFO | 2026-09-22 14:48:50,207 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:48:50,214 | CSV analiz edilirken bir hata olu�tu: object of type 'numpy.int64' has no len()
+INFO | 2026-09-22 14:54:18,180 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:54:18,180 | upload-csv endpointinde hata olu�tu: name 'analyse_csv_file' is not defined
+INFO | 2026-09-22 14:57:55,628 | /upload-csv endpointi �a�r�ld�. file_name =sample_data.csv
+ERROR | 2026-09-22 14:57:55,644 | Analiz sonucu veritaban�na kaydedilirken bir hata olu�tu: Error binding parameter 1: type 'SpooledTemporaryFile' is not supported
+INFO | 2026-09-22 14:58:55,354 | /upload-csv endpointi çağrıldı. file_name = sample_data.csv
+INFO | 2026-09-22 14:58:55,487 | analiz başarıyla tamamlandı. analysis_id= 1
+INFO | 2026-09-22 14:59:16,509 | /analysis-history endpoint çağrıldı
+INFO | 2026-09-22 14:59:16,512 | Toplam 1 kayıt listelendi
+INFO | 2026-09-22 14:59:31,280 | /analysis/1 endpointi çağrıldı
+INFO | 2026-09-22 14:59:31,300 | analysis_id = 1 detayı başarıyla getirildi
+INFO | 2026-09-22 15:14:28,051 | /upload-csv endpointi çağrıldı. file_name = sample_data.csv
+INFO | 2026-09-22 15:14:28,169 | analiz başarıyla tamamlandı. analysis_id= 2
+INFO | 2026-09-22 15:14:28,174 | /analysis-history endpoint çağrıldı
+INFO | 2026-09-22 15:14:28,175 | Toplam 2 kayıt listelendi
+INFO | 2026-09-22 15:14:28,181 | /analysis/1 endpointi çağrıldı
+INFO | 2026-09-22 15:14:28,182 | analysis_id = 1 detayı başarıyla getirildi
+INFO | 2026-09-22 15:14:58,789 | /upload-csv endpointi çağrıldı. file_name = sample_data.csv
+INFO | 2026-09-22 15:14:58,903 | analiz başarıyla tamamlandı. analysis_id= 3
+INFO | 2026-09-22 15:14:58,908 | /analysis-history endpoint çağrıldı
+INFO | 2026-09-22 15:14:58,910 | Toplam 3 kayıt listelendi
+INFO | 2026-09-22 15:14:58,916 | /analysis/1 endpointi çağrıldı
+INFO | 2026-09-22 15:14:58,917 | analysis_id = 1 detayı başarıyla getirildi
+INFO | 2026-09-22 15:15:21,853 | /upload-csv endpointi çağrıldı. file_name = sample_data.csv
+INFO | 2026-09-22 15:15:21,950 | analiz başarıyla tamamlandı. analysis_id= 4
+INFO | 2026-09-22 15:15:21,960 | /analysis-history endpoint çağrıldı
+INFO | 2026-09-22 15:15:21,963 | Toplam 4 kayıt listelendi
+INFO | 2026-09-22 15:15:21,969 | /analysis/1 endpointi çağrıldı
+INFO | 2026-09-22 15:15:21,971 | analysis_id = 1 detayı başarıyla getirildi
