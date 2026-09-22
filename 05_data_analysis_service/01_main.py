@@ -234,6 +234,56 @@ def get_analysis_by_id(analysis_id:int):
             )
 
 # 6. csv yükleme endpointinin yazılması
+#dosyayı alır, kontrol eder, analizi çalıştırır, sonucu veritabanına kaydeder..
+
+@app.post("/upload-csv")
+async def upload_csv(file:UploadFile = File(...)):
+    
+    logging.info(f"/upload-csv endpointi çağrıldı. file_name ={file.filename}")
+    
+    # dosya uzantısını kontrol etme
+    if not file.filename.endswith(".csv"):
+        logging.error("CSV olmayan dosya gönderildi")
+        raise HTTPException(
+            status_code=400,
+            detail="Lütfen yalnızca .csv uzantılı dosya yükleyiniz"
+        )
+    
+    try:
+        #dosyanın içini oku 
+        file_bytes = await file.read()
+        
+        #boş dosya kontrolü
+        if not file_bytes:
+            logging.error("Boş dosya gönderildi")
+            raise HTTPException(
+                status_code=400,
+                detail="Yüklenen dosya boş olamaz"
+            )
+        
+        #veri analizi yapalım
+        analysis_result = analyse_csv_file(file_bytes, file.file)
+        
+        #analiz sonucunu veri tabanına kaydet
+        analysis_id = save_analysis_result(analysis_result)
+        
+        logging.info(f"Analiz Başarıyla Tamamlandı. analysis_id ={analysis_id}")
+        
+        return{
+            "message": "CSV dosyası başarıyla analiz edildi ve veritabanına kaydedildi",
+            "analysis_id":analysis_id,
+            "analysis_result":analysis_result
+        }
+        
+    except HTTPException:
+        raise
+    
+    except Exception as error:
+        logging.error(f"upload-csv endpointinde hata oluştu: {error}")
+        raise HTTPException(
+            status_code=500,
+            detail="CSV yükleme işlemi sırasında hata oluştu"
+        )
 
 # 7. analiz geçmişi listeleyen endpoint yazılması
 
