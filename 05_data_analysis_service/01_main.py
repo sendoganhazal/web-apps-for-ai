@@ -145,8 +145,95 @@ def save_analysis_result(analysis_data: dict) -> int:
             detail="Analiz sonucu veritabanına kaydedilemedi"
         )
 
-# 6. csv yükleme endpointinin yazılması
+# tüm analiz sonuçlarını db den al
+def get_all_analysis_history():
+    
+    try:
+        connection = sqlite3.connect("analysis_result.db")
+        cursor = connection.cursor()
+        
+        cursor.execute(
+            """
+                SELECT id, file_name, row_count, column_count, column_names, numeric_column_count,  missing_value, created_at, 
+                FROM analysis_history
+                ORDER BY id DESC
+            """
+        )
+        
+        rows = cursor.fetchall()
+        connection.close()
+        
+        history = []
+        for row in rows:
+            history.append(
+                {
+                    "id": row[0],
+                    "file_name": row[1],
+                    "row_count": row[2],
+                    "column_count": row[3],
+                    "column_names": row[4],
+                    "numeric_column_count": row[5],
+                    "created_at": row[6],
+                }
+            )
+        
+        return history
+        
+    except Exception as e:
+        logging.error(f"Analiz geçmişi okunurken hata oluştu:{e}")
+        raise HTTPException(
+            status_code=500,
+            detail="Analiz geçmişi okunamadı"
+        )
 
+# 1 tane analiz sonucunu db den al
+def get_analysis_by_id(analysis_id:int):
+    
+    try:
+        connection = sqlite3.connect("analysis_result.db")
+        cursor = connection.cursor()
+        
+        cursor.execute(
+            """
+                SELECT id, file_name, row_count, column_count, column_names, numeric_column_count,  missing_value, created_at, 
+                FROM analysis_history
+                WHERE id = ?
+            """, (analysis_id,)
+        )
+        
+        row = cursor.fetchone()
+        connection.close()
+        
+        if row is None:
+            logging.error(f"analysis_id={analysis_id} için kayıt bulunamadı")
+            raise HTTPException(
+                status_code=404,
+                detail="İstenen analiz kaydı bulunamadı"
+            )
+        
+
+        
+        return {
+            "id": row[0],
+            "file_name": row[1],
+            "row_count": row[2],
+            "column_count": row[3],
+            "column_names": row[4],
+            "numeric_column_count": row[5],
+            "created_at": row[6],
+        }
+        
+    except HTTPException:
+        raise
+    
+    except Exception as e:
+        logging.error(f"Tekil analiz detayı okunurken hata oluştu:{e}")
+        raise HTTPException(
+                status_code=500,
+                detail="Analiz geçmişi okunamadı"
+            )
+
+# 6. csv yükleme endpointinin yazılması
 
 # 7. analiz geçmişi listeleyen endpoint yazılması
 
