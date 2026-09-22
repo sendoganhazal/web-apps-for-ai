@@ -74,6 +74,76 @@ init_db()
 
 # 5. veri analizi yapan yardımcı fonksiyonların ve db işlemleri yapan fonksiyonların tanımlanması
 
+#analiz yap
+def analyse_csv_file(file_bytes: bytes, file_name: str) -> dict:
+    try:
+        #csv dosyasını pandas ile oku
+        dataframe = pd.read_csv(BytesIO(file_bytes))
+        
+        # temel analiz bilgileri
+        row_count = len(dataframe)
+        column_count = len(dataframe.columns)
+        column_names = dataframe.columns
+        numeric_column_count = len(dataframe.select_dtypes(include="number").columns)
+        missing_value = len(dataframe.isnull().sum().sum())
+        
+        return {
+            "file_name": file_name,
+            "row_count": row_count,
+            "column_count":  column_count,
+            "column_names": column_names,
+            "numeric_column_count":numeric_column_count,
+            "missing_value": missing_value,
+            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+    except Exception as e:
+       logging.error(f"CSV analiz edilirken bir hata oluştu: {e}")
+       raise HTTPException(
+           status_code= 400,
+           detail="CSV dosyası okunamadı veya geçersiz içerik gönderildi"
+       )
+     
+# analizi dbye kaydet  
+def save_analysis_result(analysis_data: dict) -> int:
+    try:
+        connection = sqlite3.connect("analysis_results.db")
+        cursor = connection.cursor()
+        
+        cursor.execute(
+            """
+                INSERT INTO analysis_history (
+                    file_name,
+                    row_count,
+                    column_count,
+                    column_names,
+                    numeric_column_count,
+                    missing_value,
+                    created_at
+                )
+                VALUES (?,?,?,?,?,?,?)
+            """,(
+                analysis_data["file_name"],
+                analysis_data["row_count"],
+                analysis_data["column_count"],
+                json.dumps(analysis_data["column_names"], ensure_ascii=False),
+                analysis_data["numeric_column_count"],
+                analysis_data["missing_value"],
+                analysis_data["created_at"],
+            )
+        )
+        
+        connection.commit()
+        analysis_id = cursor.lastrowid
+        connection.close()
+        
+        return analysis_id
+    
+    except Exception as e:
+        logging.error(f"Analiz sonucu veritabanına kaydedilirken bir hata oluştu")
+        raise HTTPException(
+            status_code=500,
+            detail="Analiz sonucu veritabanına kaydedilemedi"
+        )
 
 # 6. csv yükleme endpointinin yazılması
 
