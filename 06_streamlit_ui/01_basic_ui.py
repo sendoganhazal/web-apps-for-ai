@@ -125,8 +125,45 @@ selected_time = st.time_input("Bir saat seçin", value = time(10, 30))
 st.write(f"{selected_date} / {selected_time}")
 
 # 9. dosya yükleme
+st.header("Dosya yükleme")
+uploaded_file = st.file_uploader(
+    "bir dosya yükleyin",
+    type = ["txt", "png", "csv", "pdf"]
+)
+
+if uploaded_file is not None:
+    st.success(f"Yüklenen dosya adı: {uploaded_file.name}")
+    st.info(f"Dosya tipi: {uploaded_file.type}")
+    st.info(f"Dosya boyutu: {uploaded_file.size} byte")
+
 # 10. buton
-# 11. mesaj kutuları
+st.header("Buton kullanımı")
+
+if st.button("Bilgileri göster"):
+    st.subheader("Girilen bilgiler")
+    st.write("**ad soyad:** Mine Aliyar")
+
+
 # 12. dataframe gösterimi
+st.header("Dataframe gösterimi")
+sample_data = pd.DataFrame(
+    {
+        "ad": ["Alex Şendoğan", "Charou Şendoğan"],
+        "yas": [30, 35],
+        "alan": ["ai", "dl"]
+    }
+)
+
+st.dataframe(sample_data, use_container_width = True)
+
 # 13. sütun yapısı
-# 14. son bilgilendirme
+st.header("Sütun yapısı kullanımı")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.write("Burası sol sütun")
+    st.text_input("burası sol sütun", key = "left_input")
+
+with col2:
+    st.write("Burası sağ sütun")
+    st.text_input("burası sağ sütun", key = "right_input")
