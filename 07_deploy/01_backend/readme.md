@@ -16,8 +16,8 @@
     pip install -r requirements.txt
     uvicorn main:app --reload
 4) Backend dockerfile ve docker ile lokalde çalıştırma 
-    docker build -t ai-roadmap-backend .
-    docker run -p 8000:8000 ai-roadmap-backend
+    docker build -t backend .
+    docker run -p 8000:8000 backend
 5) github push
     repo: python-web-uygulama-ai-roadmap-backend
     git init
